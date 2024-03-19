@@ -1,6 +1,17 @@
 from gendiff.core import open_file
 
 
+def compare_values(key, value1, value2):
+    if value1 == value2:
+        return f'    {key}: {value1}'
+    elif value1 is None:
+        return f'  + {key}: {value2}'
+    elif value2 is None:
+        return f'  - {key}: {value1}'
+    else:
+        return f'  - {key}: {value1}\n  + {key}: {value2}'
+
+
 def generate_diff(file_path1, file_path2):
     data1 = open_file(file_path1)
     data2 = open_file(file_path2)
@@ -16,15 +27,7 @@ def generate_diff(file_path1, file_path2):
         if isinstance(value2, bool):
             value2 = str(value2).lower()
 
-        if value1 == value2:
-            diff_list.append(f'    {key}: {value1}')
-        elif value1 is None:
-            diff_list.append(f'  + {key}: {value2}')
-        elif value2 is None:
-            diff_list.append(f'  - {key}: {value1}')
-        else:
-            diff_list.append(f'  - {key}: {value1}')
-            diff_list.append(f'  + {key}: {value2}')
+        diff_list.append(compare_values(key, value1, value2))
 
     formatted_diff = '{\n' + '\n'.join(diff_list) + '\n}'
     return formatted_diff
