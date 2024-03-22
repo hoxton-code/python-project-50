@@ -4,7 +4,7 @@ install:
 test:
 	poetry run pytest
 
-test-coverage:
+tests-coverage:
 	poetry run pytest --cov=gendiff --cov-report xml
 
 lint:
@@ -17,5 +17,3 @@ check: selfcheck test lint
 
 build: check
 	poetry build
-
-check: selfcheck test lint
