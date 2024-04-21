@@ -4,3 +4,5 @@ __pycache__
 /dist
 /files
 .DS_Store
+.coverage
+coverage.xml
