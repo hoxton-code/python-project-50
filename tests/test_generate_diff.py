@@ -6,7 +6,11 @@ import pytest
     ("tests/fixtures/file1.json", "tests/fixtures/file2.json",
      "tests/fixtures/expected_plain_output.txt"),
     ("tests/fixtures/file1.yaml", "tests/fixtures/file2.yaml",
-     "tests/fixtures/expected_plain_output.txt")
+     "tests/fixtures/expected_plain_output.txt"),
+    ("tests/fixtures/file_nested1.json", "tests/fixtures/file_nested2.json",
+     "tests/fixtures/expected_nested_output.txt"),
+    ("tests/fixtures/file_nested1.yaml", "tests/fixtures/file_nested2.yaml",
+     "tests/fixtures/expected_nested_output.txt"),
 ])
 def test_generate_flat_diff(file_path_1, file_path_2, expected_output):
     with open(expected_output) as file:
