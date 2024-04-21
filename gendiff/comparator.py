@@ -25,7 +25,7 @@ def compare_data(dict1, dict2):
         elif dict1[key] == dict2[key]:
             add_changes(key, 'unchanged', dict1[key], result)
         elif isinstance(dict1[key], dict) and isinstance(dict2[key], dict):
-            add_changes(key, 'changed, nested', compare_data(dict1[key], dict2[key]), result)
+            add_changes(key, 'nested', compare_data(dict1[key], dict2[key]), result)
         else:
             diff_dict = {'old_value': dict1[key], 'new_value': dict2[key]}
             add_changes(key, 'changed', diff_dict, result)
