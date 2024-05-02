@@ -3,16 +3,48 @@ from itertools import chain
 
 
 def to_str(value, depth):
+    """
+     Convert a value to a string, format dictionaries with stylish.
+
+     Parameters:
+     value: Value to convert.
+     depth (int): Nesting depth for indentation.
+
+     Returns:
+     String representation of the value.
+     """
     return stylish(value, depth) if isinstance(value, dict) else (
         convert_bool_value(str(value)))
 
 
 def convert_bool_value(string):
+    """
+     Convert Python boolean and None values to their JSON string equivalents.
+
+     Parameters:
+     string (str): The string representation of a Python value.
+
+     Returns:
+     str: The JSON string equivalent of the Python boolean or None value.
+     """
     replacements = {'None': 'null', 'True': 'true', 'False': 'false'}
     return replacements[string] if string in replacements else string
 
 
 def stylish(dict_diff, depth=0, number_indents=4, indent_symbol=' '):
+    """
+    Render a diff dictionary into a stylish format.
+
+    Parameters:
+    dict_diff (dict): Diff to format.
+    depth (int, optional): Nesting depth for indentation. Defaults to 0.
+    number_indents (int, optional): Indent symbols per level. Defaults to 4.
+    indent_symbol (str, optional): Indentation symbol. Defaults to ' '.
+
+    Returns:
+    Formatted diff string.
+    """
+
     indent = (indent_symbol * number_indents) * depth
     result_tree = []
 

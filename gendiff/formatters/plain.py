@@ -2,6 +2,16 @@ from gendiff.comparator import get_value, get_state
 
 
 def convert_value(value):
+    """
+      Convert a value to a string for plain text output.
+
+      Parameters:
+      value: Value to convert.
+
+      Returns:
+      String representation.
+      """
+
     replacements = {'True': 'true', 'False': 'false', 'None': 'null'}
 
     if isinstance(value, dict):
@@ -14,6 +24,18 @@ def convert_value(value):
 
 
 def plain(dict_diff, path=''):
+    """
+       Render a diff dictionary into a plain format.
+
+       Parameters:
+       state (str): Change type ('added', 'removed', 'nested', 'changed').
+       value: Associated value, dict for 'changed' with 'old' and 'new'.
+       path (str): Property path for the change.
+
+       Returns:
+       Message string for the change.
+       """
+
     result_str = []
     for key, val in dict_diff.items():
         value = get_value(val)
@@ -27,6 +49,18 @@ def plain(dict_diff, path=''):
 
 
 def create_messages(state, value, path):
+    """
+    Generate a message for a diff change.
+
+    Parameters:
+    state (str): Change state ('added', 'removed', 'nested', 'changed').
+    value: Change value, dict with 'old_value' and 'new_value' for 'changed'.
+    path (str): Path of the property changed.
+
+    Returns:
+    Message describing the change.
+    """
+
     message = ''
     if state == 'added':
         message += (

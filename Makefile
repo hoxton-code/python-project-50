@@ -17,3 +17,6 @@ check: selfcheck test lint
 
 build: check
 	poetry build
+	
+package-install:
+	python3 -m pip install --force-reinstall dist/*.whl
